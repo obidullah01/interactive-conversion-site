@@ -1,10 +1,22 @@
-function Validate() {
+function validate() {
     var e = document.getElementById("ddlView");
     var optionSelIndex = e.options[e.selectedIndex].value;
     var optionSelectedText = e.options[e.selectedIndex].text;
     if (optionSelIndex == 0) {
         alert("Please select a Conversion Option");
+        return;
     }
+
+    const from = document.querySelector('#ddlView').value
+    const givenValue = document.querySelector('#amount').value
+    const form = new FormData()
+    form.append('conv', from)
+    form.append('value', givenValue)
+
+    fetch('/history.php', {
+      method: "POST",
+      body: form
+    })
    
 }
 
